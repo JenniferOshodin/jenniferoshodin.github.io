@@ -7,7 +7,7 @@
   <style>
     /* -----------------------------------------------------
        1. FONT IMPORT (Optional)
-         Using Google Fonts for a modern, professional vibe
+       Using Google Fonts for a modern, professional vibe
     ----------------------------------------------------- */
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
@@ -30,9 +30,9 @@
 
     /* -----------------------------------------------------
        3. CONTAINER LAYOUT
-         We'll use a two-column layout:
-         Left side (sidebar) -> ~30%
-         Right side (content) -> ~70%
+       We'll use a two-column layout:
+       Left side (sidebar) -> ~30%
+       Right side (content) -> ~70%
     ----------------------------------------------------- */
     #cv-container {
       display: flex;
@@ -56,6 +56,7 @@
     /* Name at the top (Big, bold) */
     #cv-sidebar header {
       margin-bottom: 2rem;
+      text-align: center; /* Center the image and name */
     }
 
     #cv-sidebar header h1 {
@@ -70,6 +71,17 @@
       font-weight: 400;
       letter-spacing: 0.5px;
       margin-bottom: 0.5rem;
+    }
+
+    /* Profile Picture Styling */
+    #profile-pic {
+      display: block;
+      width: 150px;               /* Adjust as desired */
+      height: 150px;              /* Match width for a perfect circle */
+      object-fit: cover;          /* Crops the image if not perfectly square */
+      border-radius: 50%;         /* Rounds the corners into a circle */
+      border: 2px solid #fff;     /* Optional white border */
+      margin: 0 auto 1rem;        /* Center the image and add bottom spacing */
     }
 
     /* A little horizontal rule (optional) */
@@ -198,8 +210,8 @@
 
     /* -----------------------------------------------------
        6. PRINT STYLES (Optional)
-         If someone prints from the browser,
-         let's make it look nice
+       If someone prints from the browser,
+       let's make it look nice
     ----------------------------------------------------- */
     @media print {
       body {
@@ -230,6 +242,9 @@
     <!-- LEFT SIDEBAR -->
     <div id="cv-sidebar">
       <header>
+        <!-- Profile Photo -->
+        <img src="profile.jpg" alt="Photo of Jennifer Oshodin" id="profile-pic" />
+
         <h1>OSHODIN</h1>
         <h2>JENNIFER</h2>
         <hr />

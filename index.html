@@ -22,21 +22,20 @@
 
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #f0f0f0; /* Light gray background */
-      color: #333; /* Standard text color */
+      background-color: #f0f0f0;  /* Light gray background */
+      color: #333;               /* Standard text color */
       line-height: 1.4;
       -webkit-font-smoothing: antialiased;
     }
 
     /* -----------------------------------------------------
-       3. CONTAINER LAYOUT
-       We'll use a two-column layout:
-       Left side (sidebar) -> ~30%
-       Right side (content) -> ~70%
+       3. CONTAINER LAYOUT (Flexbox)
+       We'll use a two-column layout on larger screens.
+       On small screens, we'll stack them (media query below).
     ----------------------------------------------------- */
     #cv-container {
       display: flex;
-      flex-wrap: wrap; /* helps on smaller screens */
+      flex-wrap: wrap;  /* helps on smaller screens */
       max-width: 1200px;
       margin: 0 auto;
       min-height: 100vh; /* optional, if you want full height */
@@ -48,15 +47,15 @@
     #cv-sidebar {
       background-color: #2a2a2a;
       color: #ffffff; /* white text on dark bg */
-      flex: 1 1 300px;
-      max-width: 300px; /* fixed-ish sidebar width */
+      flex: 0 0 300px;/* force sidebar to be 300px wide if space allows */
+      max-width: 300px; 
       padding: 2rem 1.5rem;
     }
 
     /* Name at the top (Big, bold) */
     #cv-sidebar header {
       margin-bottom: 2rem;
-      text-align: center; /* Center the image and name */
+      text-align: center; /* center the image and name */
     }
 
     #cv-sidebar header h1 {
@@ -76,12 +75,12 @@
     /* Profile Picture Styling */
     #profile-pic {
       display: block;
-      width: 150px;               /* Adjust as desired */
-      height: 150px;              /* Match width for a perfect circle */
-      object-fit: cover;          /* Crops the image if not perfectly square */
-      border-radius: 50%;         /* Rounds the corners into a circle */
-      border: 2px solid #fff;     /* Optional white border */
-      margin: 0 auto 1rem;        /* Center the image and add bottom spacing */
+      max-width: 80%;       /* responsive size within the sidebar */
+      height: auto;         /* maintain aspect ratio */
+      margin: 0 auto 1rem;  /* center the image and add bottom spacing */
+      border-radius: 50%;   /* circular, if the image is roughly square */
+      border: 2px solid #fff; /* optional white border */
+      object-fit: cover;    /* crops the image inside the circle if rectangular */
     }
 
     /* A little horizontal rule (optional) */
@@ -137,7 +136,7 @@
     ----------------------------------------------------- */
     #cv-content {
       background-color: #ffffff;
-      flex: 1 1 700px;
+      flex: 1 1 700px;  /* grows to fill remaining space */
       padding: 2rem;
     }
 
@@ -217,20 +216,34 @@
       body {
         background-color: #ffffff;
       }
-
       #cv-container {
         flex-wrap: nowrap;
         max-width: 100%;
         min-height: auto;
       }
-
       #cv-sidebar {
         max-width: 30%;
       }
-
       #cv-content {
         max-width: 70%;
         padding: 1rem;
+      }
+    }
+
+    /* -----------------------------------------------------
+       7. MEDIA QUERY FOR SMALL SCREENS (Mobile Responsive)
+       When screen width < 768px, stack the columns
+    ----------------------------------------------------- */
+    @media (max-width: 768px) {
+      #cv-container {
+        flex-direction: column; /* stack sidebar above content */
+      }
+      #cv-sidebar,
+      #cv-content {
+        max-width: 100%;       /* full width for both */
+      }
+      #cv-sidebar {
+        flex: 0 0 auto;        /* remove fixed 300px on small screens */
       }
     }
   </style>
@@ -243,7 +256,7 @@
     <div id="cv-sidebar">
       <header>
         <!-- Profile Photo -->
-        <img src="Jennifer.jpg" alt="Photo of Jennifer Oshodin" id="Jennifer-pic" />
+        <img src="Jennifer.jpg" alt="Photo of Jennifer Oshodin" id="profile-pic" />
 
         <h1>OSHODIN</h1>
         <h2>JENNIFER</h2>
@@ -257,7 +270,11 @@
           <li>jennifer.oshodin@gmail.com</li>
           <li>417-612-6524</li>
           <li>505 East St. Louis Street, Springfield, MO 65806</li>
-          <li><a href="https://jenniferoshodin.github.io" target="_blank">https://jenniferoshodin.github.io</a></li>
+          <li>
+            <a href="https://jenniferoshodin.github.io" target="_blank">
+              https://jenniferoshodin.github.io
+            </a>
+          </li>
         </ul>
       </section>
 
